@@ -1,0 +1,45 @@
+(function() {
+    //console.log("실행")
+    var Glitch, glitch;
+  
+    Glitch = class Glitch {
+      constructor(config) {
+        this.config = config;
+        this.img = this.config.img;
+        this.data = this.img.getAttribute("src");
+        this.maxGlitch = this.config.maxGlitch;
+        this.offset = this.config.offset;
+      }
+  
+      init() {
+        return this.tick();
+      }
+  
+      tick() {
+        var corrupted, glitch, i, j, p, ref;
+        corrupted = this.data;
+        if (Math.random() > .7) {
+          glitch = Math.round(Math.random() * this.maxGlitch);
+          for (i = j = 0, ref = glitch; (0 <= ref ? j < ref : j > ref); i = 0 <= ref ? ++j : --j) {
+            p = this.offset + Math.round(Math.random() * (corrupted.length - this.offset - 1));
+            corrupted = corrupted.substr(0, p) + corrupted.charAt(p + 1) + corrupted.charAt(p) + corrupted.substr(p + 2);
+          }
+        }
+        this.img.setAttribute("src", corrupted);
+        return requestAnimationFrame(this.tick.bind(this));
+      }
+  
+    };
+  
+    glitch = new Glitch({
+      img: document.getElementById("glitch"),
+      maxGlitch: 100,
+      offset: 2000
+    });
+  
+    glitch.init();
+  
+  }).call(this);
+  
+  //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiPGFub255bW91cz4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7QUFBQSxNQUFBLE1BQUEsRUFBQTs7RUFBTSxTQUFOLE1BQUEsT0FBQTtJQUNFLFdBQWEsT0FBQSxDQUFBO01BQUMsSUFBQyxDQUFBO01BQ2IsSUFBQyxDQUFBLEdBQUQsR0FBYSxJQUFDLENBQUEsTUFBTSxDQUFDO01BQ3JCLElBQUMsQ0FBQSxJQUFELEdBQWEsSUFBQyxDQUFBLEdBQUcsQ0FBQyxZQUFMLENBQWtCLEtBQWxCO01BQ2IsSUFBQyxDQUFBLFNBQUQsR0FBYSxJQUFDLENBQUEsTUFBTSxDQUFDO01BQ3JCLElBQUMsQ0FBQSxNQUFELEdBQWEsSUFBQyxDQUFBLE1BQU0sQ0FBQztJQUpWOztJQU1iLElBQU0sQ0FBQSxDQUFBO2FBQ0QsSUFBQyxDQUFBO0lBREE7O0lBR04sSUFBTSxDQUFBLENBQUE7QUFDUixVQUFBLFNBQUEsRUFBQSxNQUFBLEVBQUEsQ0FBQSxFQUFBLENBQUEsRUFBQSxDQUFBLEVBQUE7TUFBSSxTQUFBLEdBQVksSUFBQyxDQUFBO01BRWIsSUFBTSxJQUFJLENBQUMsUUFBUixHQUFpQixFQUFwQjtRQUNFLE1BQUEsR0FBUyxJQUFJLENBQUMsS0FBTCxDQUFjLElBQUksQ0FBQyxRQUFSLEdBQWlCLElBQUMsQ0FBQSxTQUE3QjtRQUVULEtBQVMsaUZBQVQ7VUFDRSxDQUFBLEdBQUksSUFBQyxDQUFBLE1BQUQsR0FBVSxJQUFJLENBQUMsS0FBTCxDQUFlLElBQUksQ0FBQyxRQUFSLEdBQWlCLENBQUMsU0FBUyxDQUFDLE1BQVYsR0FBbUIsSUFBQyxDQUFBLE1BQXBCLEdBQTZCLENBQTlCLENBQTdCO1VBQ2QsU0FBQSxHQUFZLFNBQVMsQ0FBQyxNQUFWLENBQWlCLENBQWpCLEVBQW9CLENBQXBCLENBQUEsR0FBeUIsU0FBUyxDQUFDLE1BQVYsQ0FBaUIsQ0FBQSxHQUFFLENBQW5CLENBQXpCLEdBQWlELFNBQVMsQ0FBQyxNQUFWLENBQWlCLENBQWpCLENBQWpELEdBQXVFLFNBQVMsQ0FBQyxNQUFWLENBQWlCLENBQUEsR0FBRSxDQUFuQjtRQUZyRixDQUhGOztNQU9BLElBQUMsQ0FBQSxHQUFHLENBQUMsWUFBTCxDQUFrQixLQUFsQixFQUF5QixTQUF6QjthQUVBLHFCQUFBLENBQXNCLElBQUMsQ0FBQSxJQUFJLENBQUMsSUFBTixDQUFXLElBQVgsQ0FBdEI7SUFaSTs7RUFWUjs7RUF5QkEsTUFBQSxHQUFTLElBQUksTUFBSixDQUNQO0lBQUEsR0FBQSxFQUFZLFFBQVEsQ0FBQyxjQUFULENBQXdCLFFBQXhCLENBQVo7SUFDQSxTQUFBLEVBQVksR0FEWjtJQUVBLE1BQUEsRUFBWTtFQUZaLENBRE87O0VBS04sTUFBTSxDQUFDO0FBOUJWIiwic291cmNlc0NvbnRlbnQiOlsiXG5jbGFzcyBHbGl0Y2hcbiAgY29uc3RydWN0b3I6IChAY29uZmlnKSAtPlxuICAgIEBpbWcgICAgICAgPSBAY29uZmlnLmltZ1xuICAgIEBkYXRhICAgICAgPSBAaW1nLmdldEF0dHJpYnV0ZSBcInNyY1wiXG4gICAgQG1heEdsaXRjaCA9IEBjb25maWcubWF4R2xpdGNoXG4gICAgQG9mZnNldCAgICA9IEBjb25maWcub2Zmc2V0XG5cbiAgaW5pdDogLT5cbiAgICBkbyBAdGlja1xuICAgIFxuICB0aWNrOiAtPlxuICAgIGNvcnJ1cHRlZCA9IEBkYXRhXG5cbiAgICBpZiBkbyBNYXRoLnJhbmRvbSA+IC43XG4gICAgICBnbGl0Y2ggPSBNYXRoLnJvdW5kIGRvIE1hdGgucmFuZG9tICogQG1heEdsaXRjaFxuXG4gICAgICBmb3IgaSBpbiBbMC4uLmdsaXRjaF1cbiAgICAgICAgcCA9IEBvZmZzZXQgKyBNYXRoLnJvdW5kKCBkbyBNYXRoLnJhbmRvbSAqIChjb3JydXB0ZWQubGVuZ3RoIC0gQG9mZnNldCAtIDEpIClcbiAgICAgICAgY29ycnVwdGVkID0gY29ycnVwdGVkLnN1YnN0cigwLCBwKSArIGNvcnJ1cHRlZC5jaGFyQXQocCsxKSArIGNvcnJ1cHRlZC5jaGFyQXQocCkgKyBjb3JydXB0ZWQuc3Vic3RyKHArMikgXG4gICAgXG4gICAgQGltZy5zZXRBdHRyaWJ1dGUgXCJzcmNcIiwgY29ycnVwdGVkXG5cbiAgICByZXF1ZXN0QW5pbWF0aW9uRnJhbWUgQHRpY2suYmluZCBAXG5cblxuZ2xpdGNoID0gbmV3IEdsaXRjaFxuICBpbWcgICAgICAgOiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCBcImdsaXRjaFwiXG4gIG1heEdsaXRjaCA6IDEwMFxuICBvZmZzZXQgICAgOiAyMDAwXG5cbmRvIGdsaXRjaC5pbml0Il19
+  //# sourceURL=coffeescript
